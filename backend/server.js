@@ -1,4 +1,4 @@
-console.log("STARTING APP");
+console.log("NEW VERSION LOADED");
 
 import express from "express";
 
