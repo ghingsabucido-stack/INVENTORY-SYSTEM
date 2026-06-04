@@ -8,7 +8,7 @@
 <h1>Inventory System</h1>
 
 <input id="name" placeholder="Product Name">
-<input id="stock" placeholder="Stock">
+<input id="stock" type="number" placeholder="Stock">
 <input id="shop" placeholder="Shop">
 <button onclick="addProduct()">Add</button>
 
@@ -36,6 +36,11 @@ async function addProduct() {
   const stock = document.getElementById("stock").value;
   const shop = document.getElementById("shop").value;
 
+  if (!name || !stock || !shop) {
+    alert("Complete all fields!");
+    return;
+  }
+
   await fetch(API + "/api/products", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -57,4 +62,5 @@ loadProducts();
 </script>
 
 </body>
+</html>
 </html>
