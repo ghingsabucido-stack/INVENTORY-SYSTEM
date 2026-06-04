@@ -6,10 +6,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// TEMP DATABASE (memory only)
 let products = [];
 
-console.log("NEW VERSION LOADED");
+console.log("🔥 BACKEND LOADED SUCCESSFULLY");
 
+// ROOT TEST
 app.get("/", (req, res) => {
   res.send("API WORKING");
 });
@@ -34,13 +36,14 @@ app.post("/api/products", (req, res) => {
 
 // DELETE PRODUCT
 app.delete("/api/products/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = Number(req.params.id);
   products = products.filter(p => p.id !== id);
   res.json({ message: "Deleted" });
 });
 
+// START SERVER (RAILWAY REQUIRED)
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
-  console.log("Server running on " + PORT);
+  console.log("🚀 Server running on port " + PORT);
 });
