@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Inventory System</title>
-</head>
-<body>
-
-<h1>Inventory System</h1>
-
-<input id="name" placeholder="Product Name">
-<input id="stock" type="number" placeholder="Stock">
-<input id="shop" placeholder="Shop">
-<button onclick="addProduct()">Add</button>
-
-<h2>Products</h2>
-<ul id="list"></ul>
-
 <script>
-const API = "https://inventory-system-app-production-b805.up.railway.app";
+const API = "https://inventory-system-w6di.onrender.com";
 
 async function loadProducts() {
   const res = await fetch(API + "/api/products");
@@ -26,7 +9,7 @@ async function loadProducts() {
     data.map(p =>
       `<li>
         ${p.name} - ${p.stock} (${p.shop})
-        <button onclick="deleteProduct(${p.id})">Delete</button>
+        <button onclick="deleteProduct('${p._id}')">Delete</button>
       </li>`
     ).join("");
 }
@@ -35,11 +18,6 @@ async function addProduct() {
   const name = document.getElementById("name").value;
   const stock = document.getElementById("stock").value;
   const shop = document.getElementById("shop").value;
-
-  if (!name || !stock || !shop) {
-    alert("Complete all fields!");
-    return;
-  }
 
   await fetch(API + "/api/products", {
     method: "POST",
@@ -60,7 +38,3 @@ async function deleteProduct(id) {
 
 loadProducts();
 </script>
-
-</body>
-</html>
-</html>
